@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\StaticStorage\UserStaticStorage;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -67,6 +68,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isDeleted;
+
+    public function __construct()
+    {
+        $this->isDeleted = false;
+    }
 
     public function getId(): ?int
     {
@@ -227,5 +233,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isDeleted = $isDeleted;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccessToAdminSection(): bool
+    {
+        $hasAccess = false;
+
+        foreach ($this->getRoles() as $role) {
+            if ($hasAccess) {
+                continue;
+            }
+
+            $hasAccess = in_array($role, UserStaticStorage::getUserRoleHasAccessToAdminSection());
+        }
+
+        return $hasAccess;
     }
 }
