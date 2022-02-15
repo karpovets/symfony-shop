@@ -3,7 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
-use App\Form\EditProductFormType;
+use App\Form\DTO\EditProductModel;
+use App\Form\Admin\EditProductFormType;
 use App\Form\Handler\ProductFormHandler;
 use App\Repository\ProductRepository;
 use App\Utils\Manager\ProductManager;
@@ -29,19 +30,24 @@ class ProductController extends AbstractController
     public function edit(Request $request, ProductFormHandler $productFormHandler, Product $product = null): Response
     {
 
-        if (!$product) {
-            $product = new Product();
-        }
+        $editProductModel = EditProductModel::makeFromProduct($product);
 
-        $form = $this->createForm(EditProductFormType::class, $product);
+        $form = $this->createForm(EditProductFormType::class, $editProductModel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product = $productFormHandler->processEditForm($product, $form);
+            $product = $productFormHandler->processEditForm($editProductModel, $form);
+
+            $this->addFlash('success', 'Товар успешно сохранен');
+
             return $this->redirectToRoute('admin_product_edit', ['id'=> $product->getId()]);
         }
 
-        $images = $product->getProductImages()
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('warning', 'Ошибка сохранения, проверьте поля');
+        }
+
+        $images = $product
         ? $product->getProductImages()->getValues()
         : [];
 
@@ -56,6 +62,9 @@ class ProductController extends AbstractController
     public function delete(Product $product, ProductManager $productManager): Response
     {
         $productManager->remove($product);
+
+        $this->addFlash('warning', 'Товар успешно удален');
+
         return $this->redirectToRoute('admin_product_list');
     }
 }
