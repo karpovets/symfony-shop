@@ -73,7 +73,19 @@ class OrderManager extends AbstractBaseManager
         $this->entityManager->flush();
 
         $this->cartManager->remove($cart);
-        dd($order);
+    }
+
+    public function recalculateOrderTotalPrice(Order $order)
+    {
+        $orderTotalPrice = 0;
+
+        /** @var OrderProduct $orderProduct */
+        foreach ($order->getOrderProducts()->getValues() as $orderProduct) {
+            $orderTotalPrice += $orderProduct->getQuantity() * $orderProduct->getPricePerOne();
+        }
+
+        $order->setTotalPrice($orderTotalPrice);
+
     }
 
     /**
