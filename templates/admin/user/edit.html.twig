@@ -127,7 +127,7 @@
     </div>
 
     {% if user and user.id %}
-        {% include 'admin/_embed/_utils/_modal.htm.twig' with {
+        {% include 'admin/_embed/_utils/_modal.html.twig' with {
             'modalId': 'approveDeleteModal',
             'modalTitle': 'Are you sure 1?',
             'modalText': 'User will be deleted?',

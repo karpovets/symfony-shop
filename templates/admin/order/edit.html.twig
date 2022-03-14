@@ -84,7 +84,13 @@
                     Products:
                 </div>
                 <div class="col-md-11">
-                    <div id="app"></div>
+                    {% if order.id %}
+                        <div id="app"></div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            To add products, first click "Save Changes".
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -109,7 +115,7 @@
     </div>
 
     {% if order and order.id %}
-        {% include 'admin/_embed/_utils/_modal.htm.twig' with {
+        {% include 'admin/_embed/_utils/_modal.html.twig' with {
             'modalId': 'approveDeleteModal',
             'modalTitle': 'Are you sure 1?',
             'modalText': 'Order will be deleted?',

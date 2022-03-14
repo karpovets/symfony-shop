@@ -154,7 +154,7 @@
     </div>
 
     {% if product and product.id %}
-        {% include 'admin/_embed/_utils/_modal.htm.twig' with {
+        {% include 'admin/_embed/_utils/_modal.html.twig' with {
             'modalId': 'approveDeleteModal',
             'modalTitle': 'Are you sure 1?',
             'modalText': 'Product will be deleted?',

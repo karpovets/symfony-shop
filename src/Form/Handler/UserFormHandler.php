@@ -4,7 +4,7 @@
 namespace App\Form\Handler;
 
 use App\Entity\User;
-use App\Utils\Manager\UserManager;
+use App\Utils\Utils;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
