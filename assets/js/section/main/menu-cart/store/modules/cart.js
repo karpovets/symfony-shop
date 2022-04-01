@@ -4,29 +4,16 @@ import {apiConfig, apiConfigPatch} from "../../../../../utils/settings";
 import {concatUrlByParams} from "../../../../../utils/url-generator";
 
 
-function getAlertStructure() {
-    return {
-        type: null,
-        message: null
-    };
-}
-
 const state = () => ({
     cart: {},
-    alert: getAlertStructure(),
-    isSentForm: false,
     staticStore: {
         url: {
             apiCart: window.staticStore.urlCart,
             apiCartProduct: window.staticStore.urlCartProduct,
             viewProduct: window.staticStore.urlViewProduct,
-            loginPage: window.staticStore.urlLoginPage,
+            viewCart: window.staticStore.urlViewCart,
             assetImageProducts: window.staticStore.urlAssetImageProducts,
-            apiOrder: window.staticStore.urlOrder
         },
-        user: {
-            isLoggedIn: window.staticStore.isUserLoggedIn
-        }
     }
 });
 
@@ -43,23 +30,20 @@ const getters = {
         )
 
         return result;
-    }
+    },
 };
 
 const actions = {
-    async getCart({state, commit}) {
+    async getCart({state, commit, dispatch}) {
         const url = state.staticStore.url.apiCart
 
         const result = await axios.get(url, apiConfig);
-        console.log(result.data);
+        console.log('getCart', result.data);
         if (result.data && result.data["hydra:member"].length && result.status == StatusCodes.OK) {
             commit('setCart', result.data["hydra:member"][0]);
             console.log(state.cart);
         } else {
-            commit("setAlert", {
-                type: 'info',
-                message: 'Your cart is empty!',
-            });
+            dispatch('createCart');
         }
     },
 
@@ -70,7 +54,7 @@ const actions = {
         );
 
         const result = await axios.delete(url, apiConfig);
-        if (result.data && result.status == StatusCodes.NO_CONTENT) {
+        if (result.status == StatusCodes.NO_CONTENT) {
             commit('setCart', {});
         }
     },
@@ -84,60 +68,79 @@ const actions = {
         const result = await axios.delete(url, apiConfig);
         if (result.status == StatusCodes.NO_CONTENT) {
             dispatch('getCart');
-            commit('cleanAlert');
+            //commit('cleanAlert');
         }
     },
-    async updateCartProductQuantity({state, dispatch}, payload) {
-        const url = concatUrlByParams(
-            state.staticStore.url.apiCartProduct,
-            payload.cartProductId
-        );
 
-        const data = {
-            "quantity": parseInt(payload.quantity)
+    addCartProduct({ state, dispatch }, productData) {
+        if (!productData.quantity) {
+            productData.quantity = 1;
         }
 
-        const result = await axios.patch(url, data, apiConfigPatch);
-        if (result.status == StatusCodes.OK) {
+        console.log('productData', productData);
+
+        const existCartProduct = state.cart.cartProducts.find(
+            cartProduct => cartProduct.product.uuid === productData.uuid
+        );
+
+        if (existCartProduct) {
+            dispatch('addExistCartProduct', {
+                cartProductId: existCartProduct.id,
+                quantity: existCartProduct.quantity + productData.quantity
+            });
+        } else {
+            dispatch('addNewCartProduct', productData);
+        }
+    },
+
+    async createCart({ state, dispatch }) {
+        const url = state.staticStore.url.apiCart;
+        const data = {};
+        const result = await axios.post(url, {}, apiConfig);
+        console.log(result);
+        if (result.data && result.status == StatusCodes.CREATED) {
             dispatch('getCart');
         }
     },
 
-    async makeOrder({ state, commit, dispatch }) {
-        const url = state.staticStore.url.apiOrder;
+    async addExistCartProduct({ state, dispatch }, cartProductData) {
+        const url = concatUrlByParams(
+            state.staticStore.url.apiCartProduct,
+            cartProductData.cartProductId
+        );
+
         const data = {
-            cartId: state.cart.id
+            quantity: cartProductData.quantity
         };
 
+        const result = await axios.patch(url, data, apiConfigPatch);
+
+        console.log('status', result.status);
+        if (result.status === StatusCodes.OK) {
+            dispatch('getCart');
+        }
+    },
+
+    async addNewCartProduct({ state, dispatch }, productData) {
+        const url = state.staticStore.url.apiCartProduct;
+        const data = {
+            cart: "/api/carts/" + state.cart.id,
+            product: "/api/products/" + productData.uuid,
+            quantity: productData.quantity
+        };
         const result = await axios.post(url, data, apiConfig);
 
         if (result.data && result.status === StatusCodes.CREATED) {
-            commit('setAlert', {
-                type: 'success',
-                message: 'Thank you for your purchase! Our manager will contact with you in 24 hours.'
-            });
-            commit('setIsSentForm', true);
-            dispatch('cleanCart');
+            dispatch('getCart');
         }
     }
 };
 
 const mutations = {
     setCart(state, cart) {
+        console.log('setCart', cart);
         state.cart = cart;
     },
-    setAlert(state, model) {
-        state.alert = {
-            type: model.type,
-            message: model.message
-        }
-    },
-    setIsSentForm(state, value) {
-        state.isSentForm = value;
-    },
-    cleanAlert(state) {
-        state.alert = getAlertStructure();
-    }
 };
 
 export default {

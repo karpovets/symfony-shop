@@ -32,8 +32,10 @@
         type="number"
         class="form-control"
         min="1"
+        :max="productQuantityMax"
         step="1"
         @focusout="updateQuantity"
+        @change="updateMaxValue($event, 'quantity', productQuantityMax)"
         >
     </td>
     <td class="total-col">
@@ -82,6 +84,10 @@ export default {
       return this.quantity * this.cartProduct.product.price;
     },
 
+    productQuantityMax() {
+      return parseInt(this.cartProduct.product.quantity);
+    },
+
     urlShowProduct() {
       return this.staticStore.url.viewProduct + "/" + this.cartProduct.product.uuid;
     }
@@ -99,6 +105,18 @@ export default {
 
       )
     },
+
+    updateMaxValue(event, field, maxValue) {
+      const value = Number.parseFloat(event.target.value);
+      let updatedValue = 1;
+      if (value > 0 && value <= maxValue) {
+        updatedValue = value;
+      } else if (value > maxValue) {
+        updatedValue = maxValue;
+      }
+      this.$data[field] = updatedValue;
+    },
+
     updateQuantity() {
       const payload = {
         cartProductId: this.cartProduct.id,
