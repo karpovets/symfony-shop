@@ -5,22 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c68840e2-dae5-4f8e-82db-886ad3049113" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/symfony-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-shop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/components/CartProductItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/components/CartProductItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/store/modules/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/section/main/main-cart-show/store/modules/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/section/main/menu-cart/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/section/main/menu-cart/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/section/main/menu-cart/store/modules/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/section/main/menu-cart/store/modules/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Main/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Main/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/mailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/mailer.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CartProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CartProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/ApiPlatform/EventSubscriber/MakeOrderFromCartSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ApiPlatform/EventSubscriber/MakeOrderFromCartSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/ApiPlatform/Extension/FilterCartQueryExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ApiPlatform/Extension/FilterCartQueryExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/_embed/_menu/_desktop_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/_embed/_menu/_desktop_menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/cart/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/cart/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/category/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/category/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main/product/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/product/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +112,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
@@ -198,6 +202,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/panther" />
       <path value="$PROJECT_DIR$/vendor/php-webdriver/webdriver" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
+      <path value="$PROJECT_DIR$/vendor/lorenzo/pinky" />
+      <path value="$PROJECT_DIR$/vendor/twig/inky-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="1yj8Une4rH6tri8lE7lXkdbEsME" />
@@ -210,7 +219,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/js/section/main/menu-cart/store/modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/css/section/main" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
@@ -219,18 +228,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Utils" />
       <recent name="$PROJECT_DIR$/assets/js/section/main/menu-cart/store" />
       <recent name="$PROJECT_DIR$/assets/js/section" />
       <recent name="$PROJECT_DIR$/src/Form/Admin" />
       <recent name="$PROJECT_DIR$/templates/main" />
-      <recent name="$PROJECT_DIR$/src/Controller/Main" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/css/section/main" />
+      <recent name="$PROJECT_DIR$/templates/main/email/manager" />
       <recent name="$PROJECT_DIR$/assets/js/section/main/menu-cart/store/modules" />
       <recent name="$PROJECT_DIR$/assets/js/section/main/main-cart-show/store" />
       <recent name="$PROJECT_DIR$/assets/js/section/main/main-cart-show" />
-      <recent name="$PROJECT_DIR$/assets/js/admin/theme" />
-      <recent name="$PROJECT_DIR$/assets/js/section/main/utils" />
     </key>
   </component>
   <component name="RunManager">
@@ -257,7 +266,8 @@
       <workItem from="1646600164880" duration="1212000" />
       <workItem from="1646689269402" duration="71183000" />
       <workItem from="1648640844732" duration="305000" />
-      <workItem from="1648812813169" duration="5804000" />
+      <workItem from="1648812813169" duration="16303000" />
+      <workItem from="1649099779515" duration="7257000" />
     </task>
     <servers />
   </component>
@@ -277,10 +287,10 @@
       <screen x="0" y="23" width="1440" height="788" />
     </state>
     <state x="320" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.788@0.23.1440.788" timestamp="1647378331032" />
-    <state x="457" y="228" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1643718241679">
+    <state x="457" y="228" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1649066492078">
       <screen x="0" y="23" width="1440" height="792" />
     </state>
-    <state x="457" y="228" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.792@0.23.1440.792" timestamp="1643718241679" />
+    <state x="457" y="228" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.792@0.23.1440.792" timestamp="1649066492078" />
     <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser" timestamp="1647291207682">
       <screen x="0" y="23" width="1440" height="788" />
     </state>
@@ -304,20 +314,21 @@
     </state>
     <state x="541" y="347" key="NewPhpFileDialog/0.23.1440.788@0.23.1440.788" timestamp="1647291051818" />
     <state x="541" y="349" key="NewPhpFileDialog/0.23.1440.792@0.23.1440.792" timestamp="1647376583459" />
-    <state x="229" y="58" key="SettingsEditor" timestamp="1643709588248">
+    <state x="229" y="58" key="SettingsEditor" timestamp="1649101675396">
       <screen x="0" y="23" width="1440" height="792" />
     </state>
-    <state x="229" y="58" key="SettingsEditor/0.23.1440.792@0.23.1440.792" timestamp="1643709588248" />
-    <state x="421" y="173" width="598" height="490" key="find.popup" timestamp="1648818724883">
+    <state x="229" y="58" key="SettingsEditor/0.23.1440.792@0.23.1440.792" timestamp="1649101675396" />
+    <state x="421" y="173" width="782" height="590" key="find.popup" timestamp="1649152221211">
       <screen x="0" y="23" width="1440" height="792" />
     </state>
     <state x="421" y="172" width="598" height="490" key="find.popup/0.23.1440.788@0.23.1440.788" timestamp="1647375306384" />
     <state x="421" y="172" width="598" height="490" key="find.popup/0.23.1440.789@0.23.1440.789" timestamp="1646743031756" />
-    <state x="421" y="173" width="598" height="490" key="find.popup/0.23.1440.792@0.23.1440.792" timestamp="1648818724883" />
+    <state x="421" y="173" width="782" height="590" key="find.popup/0.23.1440.792@0.23.1440.792" timestamp="1649152221211" />
     <state x="468" y="140" width="910" height="614" key="find.popup/0.23.1440.795@0.23.1440.795" timestamp="1647524377644" />
-    <state x="385" y="189" width="670" height="675" key="run.anything.popup" timestamp="1648817399263">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state x="385" y="188" width="670" height="673" key="run.anything.popup" timestamp="1649072031494">
+      <screen x="0" y="23" width="1440" height="792" />
     </state>
+    <state x="385" y="188" width="670" height="673" key="run.anything.popup/0.23.1440.792@0.23.1440.792" timestamp="1649072031494" />
     <state x="385" y="189" width="670" height="675" key="run.anything.popup/0.23.1440.795@0.23.1440.795" timestamp="1648817399263" />
     <state x="385" y="141" width="670" height="671" key="search.everywhere.popup" timestamp="1647350597008">
       <screen x="0" y="23" width="1440" height="788" />

@@ -6,6 +6,7 @@ import {concatUrlByParams} from "../../../../../utils/url-generator";
 
 const state = () => ({
     cart: {},
+    isLoading: false,
     staticStore: {
         url: {
             apiCart: window.staticStore.urlCart,
@@ -38,10 +39,10 @@ const actions = {
         const url = state.staticStore.url.apiCart
 
         const result = await axios.get(url, apiConfig);
-        console.log('getCart', result.data);
+        console.log(result.data);
         if (result.data && result.data["hydra:member"].length && result.status == StatusCodes.OK) {
             commit('setCart', result.data["hydra:member"][0]);
-            console.log(state.cart);
+            commit('setIsLoading', false);
         } else {
             dispatch('createCart');
         }
@@ -72,21 +73,34 @@ const actions = {
         }
     },
 
-    addCartProduct({ state, dispatch }, productData) {
+    addCartProduct({ state, commit, dispatch }, productData) {
         if (!productData.quantity) {
             productData.quantity = 1;
         }
 
-        console.log('productData', productData);
+        if (state.isLoading) {
+            return;
+        }
 
         const existCartProduct = state.cart.cartProducts.find(
             cartProduct => cartProduct.product.uuid === productData.uuid
         );
 
+        commit('setIsLoading', true);
+
         if (existCartProduct) {
+
+            let newQuantity = existCartProduct.quantity + productData.quantity;
+
+            // если количество имеющегося продукта меньше, чем добавляемое значение
+            // то позволяем добавить только максимальное значение
+            if (existCartProduct.product.quantity <= newQuantity) {
+                newQuantity = existCartProduct.product.quantity;
+            }
+
             dispatch('addExistCartProduct', {
                 cartProductId: existCartProduct.id,
-                quantity: existCartProduct.quantity + productData.quantity
+                quantity: newQuantity
             });
         } else {
             dispatch('addNewCartProduct', productData);
@@ -97,7 +111,6 @@ const actions = {
         const url = state.staticStore.url.apiCart;
         const data = {};
         const result = await axios.post(url, {}, apiConfig);
-        console.log(result);
         if (result.data && result.status == StatusCodes.CREATED) {
             dispatch('getCart');
         }
@@ -115,7 +128,6 @@ const actions = {
 
         const result = await axios.patch(url, data, apiConfigPatch);
 
-        console.log('status', result.status);
         if (result.status === StatusCodes.OK) {
             dispatch('getCart');
         }
@@ -138,9 +150,12 @@ const actions = {
 
 const mutations = {
     setCart(state, cart) {
-        console.log('setCart', cart);
         state.cart = cart;
     },
+
+    setIsLoading(state, isLoading) {
+        state.isLoading = isLoading;
+    }
 };
 
 export default {

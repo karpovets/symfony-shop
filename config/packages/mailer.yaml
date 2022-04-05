@@ -1,3 +1,5 @@
 framework:
     mailer:
+        headers:
+            from: 'Robot <robot@symfony-shop.com>'
         dsn: '%env(MAILER_DSN)%'
